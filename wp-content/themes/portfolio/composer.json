@@ -1,0 +1,9 @@
+{
+    "name": "wembley/portfolio",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Portfolio\\App\\": "app"
+        }
+    }
+}
