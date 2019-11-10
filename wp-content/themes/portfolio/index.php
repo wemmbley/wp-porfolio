@@ -9,9 +9,30 @@ try {
 
     $boot = \Portfolio\App\Bootstrap::load( $app_config );
 
-    wp_head();
+    ?>
+    <!DOCTYPE html>
+        <html lang="en" class="no-js">
+            <body>
+    <?php
+    get_header();
 
-    wp_footer();
+    require_once 'blocks/header-block.php';
+    require_once 'blocks/banner-block.php';
+    require_once 'blocks/about-block.php';
+    require_once 'blocks/services-block.php';
+    require_once 'blocks/fact-block.php';
+    require_once 'blocks/porfolio-block.php';
+    require_once 'blocks/testimonial-block.php';
+    require_once 'blocks/price-block.php';
+    require_once 'blocks/blog-block.php';
+    require_once 'blocks/brands-block.php';
+
+    get_footer();
+    ?>
+            </body>
+    </html>
+    <?
+
 } catch ( Exception $exception ) {
     if( WP_DISPLAY_ERRORS ) {
         echo $exception->getMessage();
