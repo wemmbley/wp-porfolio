@@ -2,11 +2,23 @@
 
 namespace Portfolio\App\Assets;
 
+/**
+ * Class Assets
+ * @package Portfolio\App\Assets
+ */
 class Assets
 {
 
+    /**
+     * Default assets folder
+     *
+     * @var string
+     */
     private $assets_folder;
 
+    /**
+     * Assets constructor.
+     */
     public function __construct()
     {
         $this->assets_folder = get_stylesheet_directory_uri() . '/assets/';
@@ -16,6 +28,9 @@ class Assets
         add_action( 'wp_enqueue_scripts', [ $this, 'include_scripts' ] );
     }
 
+    /**
+     * Include new style into theme
+     */
     public function include_assets()
     {
         wp_enqueue_style( 'linearicons', $this->assets_folder . 'css/linearicons.css', [], $this->theme_version() );
@@ -29,6 +44,9 @@ class Assets
         wp_enqueue_style( 'main', $this->assets_folder . 'css/main.css', [], $this->theme_version() );
     }
 
+    /**
+     * Include new script into theme
+     */
     public function include_scripts()
     {
         wp_enqueue_script( 'jquery', $this->assets_folder . 'js/vendor/jquery-2.2.4.min.js', [], $this->theme_version(), true );
@@ -51,16 +69,24 @@ class Assets
         wp_enqueue_script( 'main', $this->assets_folder . 'js/main.js', [], $this->theme_version(), true );
     }
 
+    /**
+     * Disable default WP styles or scripts
+     */
     public function deregister_asset()
     {
         wp_deregister_script( 'jquery' );
     }
 
+    /**
+     * Get theme version from style.css
+     *
+     * @return string
+     */
     private function theme_version()
     {
         $theme_data = wp_get_theme();
 
-        return $theme_data->version;
+        return (string) $theme_data->version;
     }
 
 }
